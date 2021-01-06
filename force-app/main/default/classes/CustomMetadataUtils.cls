@@ -7,7 +7,7 @@
 */
 
 
-public without sharing class CustomMetadataUtils{
+public with sharing class CustomMetadataUtils{
 
     @AuraEnabled
     public static String insertMetadata(String name, String jwt, String pword, boolean registered) {
@@ -46,6 +46,6 @@ public without sharing class CustomMetadataUtils{
 
     @AuraEnabled(cacheable=true)
     public static List<My_Metadata__mdt> getCustomMetadata(){
-        return [SELECT Id, DeveloperName, JWT__c, Password__c, Registered__c FROM My_Metadata__mdt];
+        return [SELECT Id, DeveloperName, JWT__c, Password__c, Registered__c FROM My_Metadata__mdt WITH SECURITY_ENFORCED];
     }
 }
